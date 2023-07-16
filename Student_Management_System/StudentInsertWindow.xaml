@@ -1,0 +1,116 @@
+﻿<Window x:Class="Student_Management_System.StudentInsertWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Student_Management_System"
+        mc:Ignorable="d"
+        Title="{Binding Title,UpdateSourceTrigger=PropertyChanged}" Height="450"
+        Width="500"
+        
+        WindowStyle="None" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen"
+        
+        >
+    <Window.DataContext>
+        <local:StudentInsertWindowVM/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Personalized-Learning-129781614.jpg" Opacity="0.4"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock TextAlignment="Center" 
+                       Text="{Binding Title,UpdateSourceTrigger=PropertyChanged}" Background="#663300" Foreground="White"
+                       HorizontalAlignment="Center" FontSize="20" Width="500" FontWeight="Bold"
+                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+        <TextBlock Text="IndexNo:" Grid.Row="1" Grid.Column="0" Margin="20 10 20 10" Padding="3 3 3 3" FontWeight="Bold" FontFamily="Sitka Small" FontSize="14"/>
+        <TextBox Text="{Binding Indexno, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="1" Grid.Column="1" Margin="20 10 20 10" Padding="3 3 3 3" 
+                 Width="300" Background="#FFE6E2E2"/>
+
+        <TextBlock Text="First Name:" Grid.Row="2" Grid.Column="0" Margin="20 10 20 10" Padding="3 3 3 3" FontFamily="Sitka Small" FontSize="14" FontWeight="Bold" />
+        <TextBox Text="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}" 
+                     Grid.Row="2" Grid.Column="1" Margin="20 10 20 10" Padding="3 3 3 3"
+                 Width="300" Background="#FFDCD0D0"/>
+
+
+        <TextBlock Text="Last Name:" Grid.Row="3" Grid.Column="0" Margin="20 10 20 10" Padding="3 3 3 3" FontFamily="Sitka Small" FontSize="14" FontWeight="Bold"/>
+        <TextBox Text="{Binding Lastname, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="3" Grid.Column="1" Margin="20 10 20 10" Padding="3 3 3 3"
+                 Width="300" Background="#FFEAE6E6"/>
+
+
+
+        <TextBlock Text="Date of Birth:" Grid.Row="4" Grid.Column="0" Margin="20 10 20 10" Padding="3 3 3 3" FontFamily="Sitka Small" FontWeight="Bold" FontSize="14" />
+        <DatePicker  SelectedDate="{Binding Dateofbirth, 
+            UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                 Grid.Row="4" Grid.Column="1" Margin="20 10 20 10" Padding="3 3 3 3"
+                 Width="300" Background="#FFE8E2E2" SelectedDateFormat="Short"/>
+
+        <TextBlock Text="GPA" Grid.Row="5" Grid.Column="0" Margin="20 10 20 10" Padding="3 3 3 3" FontFamily="Sitka Small" FontSize="14" FontWeight="Bold"/>
+        <TextBox Text="{Binding Gpa, UpdateSourceTrigger=PropertyChanged, 
+                        StringFormat={}{0:F2}}" 
+                 Grid.Row="5" Grid.Column="1" Margin="20 10 20 10" Padding="3 3 3 3"
+                 Width="300" Background="#FFE5D7D7" />
+
+
+        <TextBlock Text="Picture" Grid.Row="6" Grid.Column="0" Margin="20 10 20 10" Padding="3 3 3 3" FontFamily="Sitka Small" FontSize="14" FontWeight="Bold"/>
+        <Button Content="Insert Picture" Width="100" HorizontalAlignment="Left" 
+                Command="{Binding UploadPhotoCommand}" Grid.Row="6" Grid.Column="1" Margin="20 10 20 10" Padding="3 3 3 3" Background="#FFB90707" Foreground="#FFF0E9E9" FontWeight="Bold" FontFamily="Segoe UI Semibold" FontSize="14" 
+                />
+        <Image Height="50" HorizontalAlignment="Left" Width="50"
+               VerticalAlignment="Top" Source="{Binding SelectedImage,UpdateSourceTrigger=PropertyChanged}" 
+               Grid.Row="7" Grid.Column="1" Margin="20 10 20 10" />
+
+        <Button 
+            Style="{StaticResource otherbutton}"
+            Content="Save" Command="{Binding SaveCommand}" 
+                Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left"
+                Margin="210,10,0,20" Padding="3 3 3 3" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1"  StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF3EFBD0" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <Button Content="Back"
+                Style="{StaticResource otherbutton}"
+                Name="BackButton"
+                Width="100"
+                Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left"
+                Margin="20,10,0,20" Padding="3 3 3 3" 
+                Command="{Binding CloseStudentInsertWindowCommand}"
+                FontWeight="SemiBold" Foreground="DarkRed" 
+                FontSize="14"          >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1"  StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF3EFBD0" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+
+    </Grid>
+</Window>
